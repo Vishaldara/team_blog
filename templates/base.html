@@ -1,10 +1,48 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>Awesome Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/blog.css" %}">
 </head>
 <body>
-<h1>Hello, World!</h1>
+<div id="masthead">
+<div class="container">
+    <div class="row">
+        <h1> Team Blog
+        <p id="logo" class="lead"> Why is there no prize for this?</p>
+        </h1>
+
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="panel">
+    <div class="panel-body">
+
+        {% block content %}
+        {%  endblock %}
+</div>
+    </div>
+</div>
+</div>
+</div>
+<footer>
+    <div class="container">
+
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0alpha1/jquery.min.js"> </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitterbootstrap/4.0.0alpha/js/bootstrap.min.js">
+</script>
+
+
+
 </body>
 </html>

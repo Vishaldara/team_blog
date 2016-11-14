@@ -6,5 +6,7 @@ from models import Post
 # Create your views here.
 def listofposts(request):
     posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request ,"listsofposts.html",{"posts":posts})
+    return render(request ,"listofposts.html",{"posts":posts})
 
+
+def postdetail(request):
