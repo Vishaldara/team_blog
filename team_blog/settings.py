@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
+import urlparse
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +28,7 @@ SECRET_KEY = 'io-fzcyos7%ri8r7t+&rxhepxy1c0wziy(&so1tjxrgag7hh!4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://team-blog.herokuapp.com/']
 
 
 # Application definition
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'blog',
     'disqus',
     'django.contrib.sites',
+    'dj-database-url',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +80,7 @@ WSGI_APPLICATION = 'team_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Password validation
@@ -127,4 +126,16 @@ DISQUS_WEBSITE_SHORTNAME='mybootcampblog'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Register database schemes in URLs.
+DATABASES = {
+   'default': {
+       # 'ENGINE': 'django.db.backends.sqlite3',
+       # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
+
+CLEAR_DB_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
+
+DATABASES['default'] = dj_database_url.parse(CLEAR_DB_URL)
 
